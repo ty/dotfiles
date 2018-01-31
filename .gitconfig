@@ -166,5 +166,7 @@
 	# Make `git push` push relevant annotated tags when pushing branches out.
 	followTags = true
 
-
+[user]
+    name = Tyler Johnson
+    email = tyler@slack-corp.com
 

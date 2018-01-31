@@ -105,6 +105,7 @@ endif
 call plug#begin('~/.vim/plugged')
 Plug 'https://github.com/editorconfig/editorconfig-vim.git'
 Plug 'https://github.com/vim-syntastic/syntastic.git'
+Plug 'https://github.com/plasticboy/vim-markdown'
 call plug#end()
 
 set statusline+=%#warningmsg#
