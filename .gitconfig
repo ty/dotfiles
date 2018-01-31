@@ -137,7 +137,7 @@
 [commit]
 
 	# https://help.github.com/articles/signing-commits-using-gpg/
-	gpgsign = true
+	gpgsign = false
 
 [diff]
 
@@ -168,5 +168,5 @@
 
 [user]
     name = Tyler Johnson
-    email = tyler@slack-corp.com
+    email = tyler@itgardeners.com
 
