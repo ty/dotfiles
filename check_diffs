@@ -1,0 +1,12 @@
+#!/bin/bash
+#
+# compare files in this dir to our home dir
+#
+
+FILES=$(find . -maxdepth 1 -name ".*" -type f)
+
+for FILE in ${FILES[@]}
+do
+    echo "examining: $FILE"
+    diff "$HOME/$FILE" "$FILE"
+done
