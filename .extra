@@ -13,7 +13,6 @@ daily_dir () {
 
     cd ~/daily/"$(date +%Y%m%d)"
 }
-
 test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
 
 source "$HOME/.tmux.completion"
