@@ -1,4 +1,5 @@
 #!/bin/bash
+# TODO: add these back to main files?
 
 # organize stuff by day
 daily_dir () {
@@ -13,6 +14,7 @@ daily_dir () {
 
     cd ~/daily/"$(date +%Y%m%d)"
 }
+
 test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
 
 source "$HOME/.tmux.completion"
@@ -52,12 +54,18 @@ alias gitbr="git for-each-ref --sort=committerdate refs/heads/ | awk -F'/' '{ pr
 
 # knife search wrapper
 ks () {
-	NODES=$(knife node list | grep "$1" | sort)
-    if [ "$(echo "$NODES" | wc -w)" -eq 1 ]; then
-		knife node show "$1"
-	else
-		echo "$NODES" | tr -s ' ' '\n'
-	fi
+    # build a string we can eval at the end
+    HAYSTACK="knife node list"
+    for ARG in "${@}"
+    do
+        HAYSTACK="$HAYSTACK | grep \"$ARG\""
+    done
+    OUTPUT=$(eval "$HAYSTACK")
+    # If there in only one host show the detailed view
+    if [ "$(echo "$OUTPUT" | wc -w)" -eq 1 ]
+    then knife node show "$1"
+    else echo "$OUTPUT"
+    fi
 }
 
 # history grep (sorry mercurial users)
