@@ -105,6 +105,7 @@ endif
 call plug#begin('~/.vim/plugged')
 Plug 'https://github.com/editorconfig/editorconfig-vim.git'
 Plug 'https://github.com/vim-syntastic/syntastic.git'
+Plug 'google/yapf', { 'rtp': 'plugins/vim', 'for': 'python' }
 call plug#end()
 
 set statusline+=%#warningmsg#
@@ -115,3 +116,11 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+"" This supresses warnings in chef erb files
+let g:syntastic_eruby_ruby_quiet_messages = {'regex': 'possibly useless use of a variable in void context'}
+
+"" Custom configs
+"" Include user's local vim config
+if filereadable(expand("~/.vimrc.local"))
+  source ~/.vimrc.local
+endif

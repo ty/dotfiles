@@ -51,6 +51,8 @@ alias gitclear="git fetch -p"
 
 # show the newest branches last
 alias gitbr="git for-each-ref --sort=committerdate refs/heads/ | awk -F'/' '{ print \$NF }'"
+alias branches='for k in `git branch|sed "s/^..//"`;do echo -e `git log --color -1 --pretty=format:"%Cgreen%ci %Cblue%cr%Creset" "$k"`\\t"$k";done|sort'
+alias gb='git for-each-ref --sort=-committerdate refs/heads/ --format="%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(contents:subject) -  (%(color:green)%(committerdate:relative)%(color:reset))"'
 
 # knife search wrapper
 ks () {
@@ -63,7 +65,7 @@ ks () {
     OUTPUT=$(eval "$HAYSTACK")
     # If there in only one host show the detailed view
     if [ "$(echo "$OUTPUT" | wc -w)" -eq 1 ]
-    then knife node show "$1"
+    then knife node show "$OUTPUT"
     else echo "$OUTPUT"
     fi
 }
@@ -85,5 +87,9 @@ activate () {
 
 f () {
     find . -name "*$1*"
+}
+
+beg () {
+    less -p "$1" "$2"
 }
 
