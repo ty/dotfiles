@@ -35,3 +35,4 @@ alias sudo='sudo '
 
 # Get macOS Software Updates, and update installed Ruby gems, Homebrew, n# Print each PATH entry on a separate line
 alias path='echo -e ${PATH//:/\\n}'
+alias depro='/mnt/home/tyler/chef-repo/bin/deprovision --skip-route53'
