@@ -60,7 +60,7 @@ ks () {
     HAYSTACK="knife node list"
     for ARG in "${@}"
     do
-        HAYSTACK="$HAYSTACK | grep \"$ARG\""
+        HAYSTACK="$HAYSTACK | grep \"$ARG\" | sort -V"
     done
     OUTPUT=$(eval "$HAYSTACK")
     # If there in only one host show the detailed view
