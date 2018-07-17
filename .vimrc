@@ -107,6 +107,7 @@ Plug 'https://github.com/editorconfig/editorconfig-vim.git'
 Plug 'https://github.com/vim-syntastic/syntastic.git'
 Plug 'google/yapf', { 'rtp': 'plugins/vim', 'for': 'python' }
 Plug 'https://github.com/hashivim/vim-terraform.git'
+Plug 'https://github.com/hhvm/vim-hack.git'
 call plug#end()
 
 set statusline+=%#warningmsg#
