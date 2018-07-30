@@ -55,6 +55,9 @@ alias branches='for k in `git branch|sed "s/^..//"`;do echo -e `git log --color 
 alias gb='git for-each-ref --sort=-committerdate refs/heads/ --format="%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(contents:subject) -  (%(color:green)%(committerdate:relative)%(color:reset))"'
 
 # knife search wrapper
+# TODO: add a verbose mode with something like knife node show zookeeper-dev9 -a instance.zone -a instance.type -Fj
+# knife node show zookeeper-dev9 -a instance.zone -a instance.type -Fj | jq -r ".\"$HOAST\".\"instance.zone\", .\"$HOAST\".\"instance.type\"" | tr '\n' ' '
+# knife node show zookeeper-dev9 -a instance.zone -a instance.type -Fj | jq -r "\"$HOAST\", .\"$HOAST\".\"instance.zone\", .\"$HOAST\".\"instance.type\"" | tr '\n' ' '
 ks () {
     # build a string we can eval at the end
     HAYSTACK="knife node list"
@@ -67,6 +70,27 @@ ks () {
     if [ "$(echo "$OUTPUT" | wc -w)" -eq 1 ]
     then knife node show "$OUTPUT"
     else echo "$OUTPUT"
+    fi
+}
+
+ksv () {
+    # build a string we can eval at the end
+    HAYSTACK="knife node list"
+    for ARG in "${@}"
+    do
+        HAYSTACK="$HAYSTACK | grep \"$ARG\" | sort -V"
+    done
+    OUTPUT=$(eval "$HAYSTACK")
+    # If there in only one host show the detailed view
+    if [ "$(echo "$OUTPUT" | wc -w)" -eq 1 ]
+    then knife node show "$OUTPUT"
+    else
+        for HOAST in ${OUTPUT[@]}
+        do
+            knife node show "$HOAST" -a instance.zone -a instance.type -Fj | jq -r "\"$HOAST\", .\"$HOAST\".\"instance.zone\", .\"$HOAST\".\"instance.type\"" | tr '\n' ' '
+            echo ""
+        #echo "$OUTPUT"
+    done
     fi
 }
 
