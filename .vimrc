@@ -110,6 +110,9 @@ Plug 'https://github.com/hashivim/vim-terraform.git'
 Plug 'https://github.com/hhvm/vim-hack.git'
 call plug#end()
 
+"" add tf linting
+let g:terraform_fmt_on_save = 1
+
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
