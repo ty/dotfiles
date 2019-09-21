@@ -117,3 +117,9 @@ beg () {
     less -p "$1" "$2"
 }
 
+
+# show diffs from where branch is attached
+#alias gitdiffhead="git diff $(git reflog show $(git rev-parse --abbrev-ref HEAD) | tail -n1 | awk '{ print $1}')"
+gitdiffhead () {
+    git diff "$(git reflog show $(git rev-parse --abbrev-ref HEAD) | tail -n1 | awk '{ print $1}')"
+}

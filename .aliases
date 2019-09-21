@@ -40,4 +40,10 @@ alias depro='/mnt/home/tyler/chef-repo/bin/deprovision --skip-route53'
 # typos
 alias vf='cd'
 
+alias terrorform=$(which terraform)
+
 alias ssh-vtlcd='ssh $(knife search node "name:slack-vtctld* AND slack_environment:prod" -i | head -n1)'
+
+alias unfuckgo='unset GOROOT'
+
+

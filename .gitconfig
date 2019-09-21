@@ -174,3 +174,5 @@
     name = Tyler Johnson
     email = tyler@slack-corp.com
 
+[url "git+ssh://git@slack-github.com"]
+	insteadOf = https://slack-github.com
